@@ -1,3 +1,7 @@
+struct Treco {
+    let palavras: [Palavra]
+}
+
 
 struct Palavra {
     var letras:[String]

@@ -3,6 +3,7 @@
 var pontos:Int = 0
 var numPalavras:Int = 0
 
+var asd:Treco
 
 //VETORES COM AS LETRAS E RESPOSTAS
 let letras = ["A","C","O","R","R"]
