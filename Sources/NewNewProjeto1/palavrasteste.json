@@ -1,0 +1,43 @@
+[
+  {
+  "letras": "acorr",
+  "palavras": ["caro",
+              "carro",
+              "aro",
+              "orar",
+              "cor"]
+  },
+  {
+  "letras": "asort",
+  "palavras": ["ator",
+               "rato",
+               "astro",
+               "rotas",
+               "tosar"]
+  },
+  {
+  "letras": "rcroa",
+  "palavras": ["ar",
+               "coa",
+               "roa",
+               "corra",
+               "arco"]
+  },
+  {
+  "letra": "maroa",
+  "palavas": ["aro",
+              "mar",
+              "mora",
+              "amora",
+              "aroma"]
+  },
+  {
+  "letras": "repna",
+  "palavras": ["rena",
+            "pena",
+            "pare",
+            "perna",
+            "penar"]
+  }
+  
+]
