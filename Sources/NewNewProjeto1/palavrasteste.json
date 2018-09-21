@@ -1,43 +1,84 @@
-[
-  {
-  "letras": "acorr",
-  "palavras": ["caro",
-              "carro",
-              "aro",
-              "orar",
-              "cor"]
-  },
-  {
-  "letras": "asort",
-  "palavras": ["ator",
-               "rato",
-               "astro",
-               "rotas",
-               "tosar"]
-  },
-  {
-  "letras": "rcroa",
-  "palavras": ["ar",
-               "coa",
-               "roa",
-               "corra",
-               "arco"]
-  },
-  {
-  "letra": "maroa",
-  "palavas": ["aro",
-              "mar",
-              "mora",
-              "amora",
-              "aroma"]
-  },
-  {
-  "letras": "repna",
-  "palavras": ["rena",
-            "pena",
-            "pare",
-            "perna",
-            "penar"]
-  }
-  
-]
+{
+  "palavras": [
+    {
+      "letras": [
+        "a",
+        "c",
+        "o",
+        "r",
+        "r"
+      ],
+      "respostas": [
+        "caro",
+        "carro",
+        "aro",
+        "orar",
+        "cor"
+      ]
+    },
+    {
+      "letras": [
+        "a",
+        "s",
+        "o",
+        "r",
+        "t"
+      ],
+      "respostas": [
+        "ator",
+        "rato",
+        "astro",
+        "rotas",
+        "tosar"
+      ]
+    },
+    {
+      "letras": [
+        "r",
+        "c",
+        "r",
+        "o",
+        "a"
+      ],
+      "respostas": [
+        "ar",
+        "coa",
+        "roa",
+        "corra",
+        "arco"
+      ]
+    },
+    {
+      "letras": [
+        "m",
+        "a",
+        "r",
+        "o",
+        "a"
+      ],
+      "respostas": [
+        "aro",
+        "mar",
+        "mora",
+        "amora",
+        "aroma"
+      ]
+    },
+    {
+      "letras": [
+        "r",
+        "e",
+        "p",
+        "n",
+        "a"
+      ],
+      "respostas": [
+        "rena",
+        "pena",
+        "pare",
+        "perna",
+        "penar"
+      ]
+    }
+  ]
+}
