@@ -4,6 +4,7 @@ var pontos:Int = 0
 var numPalavras:Int = 0
 
 
+
 //VETORES COM AS LETRAS E RESPOSTAS
 let letras = ["A","C","O","R","R"]
 var palavras:[String] = ["caro","carro","aro","orar","cor"] 
