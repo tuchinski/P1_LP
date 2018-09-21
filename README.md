@@ -1,3 +1,3 @@
-# NewNewProjeto1
+# Projeto 1 - Letroca - Linguagem de Programação
 
-A description of this package.
+
