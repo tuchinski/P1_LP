@@ -3,7 +3,7 @@ struct Treco {
 }
 
 
-struct Palavra {
+struct Palavra:Decodable {
     var letras:[String]
     var respostas:[String]
 

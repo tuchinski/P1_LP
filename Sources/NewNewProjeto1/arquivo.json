@@ -1,0 +1,43 @@
+[
+  {
+  "letras": ["a","c","o","r","r"],
+  "palavras": ["caro",
+              "carro",
+              "aro",
+              "orar",
+              "cor"]
+  },
+  {
+  "letras": ["a","s","o","r","t"],
+  "palavras": ["ator",
+               "rato",
+               "astro",
+               "rotas",
+               "tosar"]
+  },
+  {
+  "letras": ["r","c","r","o","a"],
+  "palavras": ["ar",
+               "coa",
+               "roa",
+               "corra",
+               "arco"]
+  },
+  {
+  "letra": ["m","a","r","o","a"],
+  "palavas": ["aro",
+              "mar",
+              "mora",
+              "amora",
+              "aroma"]
+  },
+  {
+  "letras": ["r","e","p","n","a"],
+  "palavras": ["rena",
+            "pena",
+            "pare",
+            "perna",
+            "penar"]
+  }
+  
+]

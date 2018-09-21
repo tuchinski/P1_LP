@@ -5,6 +5,7 @@ var numPalavras:Int = 0
 
 var asd:Treco
 
+
 //VETORES COM AS LETRAS E RESPOSTAS
 let letras = ["A","C","O","R","R"]
 var palavras:[String] = ["caro","carro","aro","orar","cor"] 
