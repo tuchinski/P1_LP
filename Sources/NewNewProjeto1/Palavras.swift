@@ -18,3 +18,4 @@ func printMain(){
     print("2  - Mostrar Highscore\n")
     print(":q - Sair\n")
 }
+
