@@ -5,13 +5,17 @@ var numPalavras:Int = 0
 var palavraAtual:Int = 0 //indica o indice do vetor da palavra atual
 let varExit: String = ":q"
 
-var json = """
-{"palavras":[{"letras":["a","c","o","r","r"],"respostas":["caro","carro","aro","orar","cor","corra"]},{"letras":["a","s","o","r","t"],"respostas":["ator","rato","astro","rotas","tosar"]},{"letras":["r","c","r","o","a"],"respostas":["ar","coa","roa","corra","arco"]},{"letras":["m","a","r","o","a"],"respostas":["aro","mar","mora","amora","aroma"]},{"letras":["r","e","p","n","a"],"respostas":["rena","pena","pare","perna","penar"]}]}
-"""
+// var json = """
+// {"palavras":[{"letras":["a","c","o","r","r"],"respostas":["caro","carro","aro","orar","cor","corra"]},{"letras":["a","s","o","r","t"],"respostas":["ator","rato","astro","rotas","tosar"]},{"letras":["r","c","r","o","a"],"respostas":["ar","coa","roa","corra","arco"]},{"letras":["m","a","r","o","a"],"respostas":["aro","mar","mora","amora","aroma"]},{"letras":["r","e","p","n","a"],"respostas":["rena","pena","pare","perna","penar"]}]}
+// """
 
-let jsonObj = json.data(using: .utf8)!
-let vetorPalavras = try JSONDecoder().decode(Treco.self,from:jsonObj)
+var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
+let json = file!.readDataToEndOfFile()
 
+// let jsonObj = json.data(using: .utf8)!
+// let vetorPalavras = try JSONDecoder().decode(Treco.self,from:jsonObj)
+
+let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
 
 let totalPalavras = vetorPalavras.palavras.count
 

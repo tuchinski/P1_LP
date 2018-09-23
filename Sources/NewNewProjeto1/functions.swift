@@ -29,7 +29,7 @@ func game(objPalavras:Treco){
             print("\n\tNivel \(palavraAtual + 1) ")
             print("\nPalavras Acertadas: \(respostasAcertadas)")
             print("\n\nEncontre palavras utilizando as seguintes letras: \(letras)")
-            var algumaCoisa = readLine()
+            let algumaCoisa = readLine()
             let palavraDigitada = algumaCoisa?.lowercased()
             if(palavraDigitada == varExit){
                 exit(1)
