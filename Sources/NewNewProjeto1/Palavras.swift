@@ -1,3 +1,5 @@
+import Foundation
+
 struct Treco:Decodable {
     let palavras: [Palavra]
 }
@@ -12,10 +14,3 @@ struct Palavra:Decodable {
         self.respostas = respostas
     }
 }
-
-func printMain(){
-    print("\n1  - Começar novo jogo\n")
-    print("2  - Mostrar Highscore\n")
-    print(":q - Sair\n")
-}
-
