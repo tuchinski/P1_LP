@@ -54,3 +54,37 @@ func game(objPalavras:Treco){
         sleep(3)
     }
 }
+
+func getRequest(options:Int) -> Data? {
+    let sessionConfiguration = URLSessionConfiguration.default
+    let session = URLSession(configuration: sessionConfiguration)
+    var meuDeus: Data?
+
+    var urls:[String] = []
+    if(options == 1){
+        urls.append("http://localhost:8080/1")
+    }else if(options == 2){
+        urls.append("http://localhost:8080/2")
+    }
+    print(urls)
+
+        // let urls = ["http://localhost:8080/2"]
+
+    let group = DispatchGroup()
+        print("staring sync")
+        urls.forEach { url in
+            group.enter()
+            session.dataTask(with: URL(string: url)!, completionHandler: {
+                (data, response, error) in
+                // let str = String(data: data!, encoding: .utf8)
+                // print("Task ran! \(str!)")
+                meuDeus = data
+                group.leave()
+            }).resume()
+        }
+
+    print("ending sync")
+    group.wait()
+    print("FINAL")
+    return meuDeus
+}  
