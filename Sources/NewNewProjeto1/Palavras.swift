@@ -1,4 +1,6 @@
-struct Treco {
+import Foundation
+
+struct Treco:Decodable {
     let palavras: [Palavra]
 }
 
