@@ -10,7 +10,7 @@ func startGame(){
     system("clear")
     print("Bem vindo ao LETROCA\nDigite seu nome:")
     let nome = readLine()
-    print("\nSeja bem vindo \(nome!)")
+    print("\nSeja bem vindo: \(nome!)")
 }
 
 func game(objPalavras:Treco){
