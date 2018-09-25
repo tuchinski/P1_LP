@@ -12,7 +12,7 @@ let varExit: String = ":q"
 // var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
 // let json = file!.readDataToEndOfFile()
 
-let json = getRequest(options:1)
+let json = postRequest(options:1)
 
 // let jsonObj = json.data(using: .utf8)!
 // let vetorPalavras = try JSONDecoder().decode(Treco.self,from:jsonObj)

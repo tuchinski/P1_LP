@@ -88,3 +88,43 @@ func getRequest(options:Int) -> Data? {
     print("FINAL")
     return meuDeus
 }  
+
+func postRequest(options:Int) -> Data? {
+    let sessionConfiguration = URLSessionConfiguration.default
+    let session = URLSession(configuration: sessionConfiguration)
+    var meuDeus: Data?
+
+
+    var urls:[String] = []
+    if(options == 1){
+        urls.append("http://localhost:8080/1dsadsa")
+    }else if(options == 2){
+        urls.append("http://localhost:8080/2")
+    }
+    
+    var request = URLRequest(url:URL(string: urls[0])!)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    // print (request)
+    print(urls)
+
+        // let urls = ["http://localhost:8080/2"]
+
+    let group = DispatchGroup()
+        print("staring sync")
+        urls.forEach { url in
+            group.enter()
+            session.dataTask(with:request, completionHandler: {
+                (data, response, error) in
+                // let str = String(data: data!, encoding: .utf8)
+                // print("Task ran! \(str!)")
+                meuDeus = data
+                group.leave()
+            }).resume()
+        }
+
+    print("ending sync")
+    group.wait()
+    print("FINAL")
+    return meuDeus
+}  
