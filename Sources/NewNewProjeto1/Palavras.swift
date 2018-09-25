@@ -14,3 +14,13 @@ struct Palavra:Decodable {
         self.respostas = respostas
     }
 }
+
+struct Player: Codable {
+    let nome:String
+    let pontuacaoTotal:Int
+
+    init(nome:String, pontuacao:Int){
+        self.nome = nome
+        self.pontuacaoTotal = pontuacao
+    }
+}

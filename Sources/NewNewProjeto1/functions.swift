@@ -6,14 +6,18 @@ func printMain(){
     print(":q - Sair\n")
 }
 
-func startGame(){
+func startGame() -> String{
     system("clear")
     print("Bem vindo ao LETROCA\nDigite seu nome:")
     let nome = readLine()
     print("\nSeja bem vindo: \(nome!)")
+    return nome!
 }
 
-func game(objPalavras:Treco){
+func game(objPalavras:Treco) -> Int{
+    var pontos:Int = 0
+    var qtdeErros:Int = 5
+    
     let qtdePalavras = objPalavras.palavras.count
     let vetPalavras: [Palavra] = objPalavras.palavras
     var palavraAtual:Int = 0
@@ -24,7 +28,7 @@ func game(objPalavras:Treco){
         var respostasAcertadas:[String] = []
         
 
-        while respostasAcertadas.count != numRespostas {
+        while (respostasAcertadas.count != numRespostas) && (qtdeErros != 0) {
             system("clear")
             print("\n\tNivel \(palavraAtual + 1) ")
             print("\nPalavras Acertadas: \(respostasAcertadas)")
@@ -39,20 +43,30 @@ func game(objPalavras:Treco){
                 respostasAcertadas.append(respostas.remove(at:indexPalavraDigitada!))
                 if(respostas.count != 0){
                     print("Acertou!! Faltam \(respostas.count) palavras")
+                    pontos += 1
+                    // system("mpg123 Sources/music/correct.mp3")
+                    // system("pwd")
                     sleep(1)
                 }
             }else{
-                print("Tente novamente")
+                qtdeErros -= 1
+                if qtdeErros != 0 {
+                    print("Tente novamente\nVocê pode errar \(qtdeErros) vezes")
+                }else{
+                    return pontos
+                }
                 sleep(1)
             }
         }
         palavraAtual += 1
+        print(qtdeErros)
         
         if(palavraAtual != qtdePalavras){
             print("VOCÊ DESCOBRIU TODAS AS PALAVRAS\nPRÓXIMO NÍVEL...")
         }
         sleep(3)
     }
+    return pontos
 }
 
 func getRequest(options:Int) -> Data? {
