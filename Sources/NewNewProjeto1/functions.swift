@@ -49,14 +49,14 @@ func game(objPalavras:Treco) -> Int{
                 if(respostas.count != 0){ //caso ainda tenha respostas pra ser acertadas
                     print("Acertou!! Faltam \(respostas.count) palavras") // mostra quantas respostas ainda restam
                     pontos += 1 
-                    system("mpg123 Sources/music/correct.mp3 2> out") //toca um som
+                    system("mpg123 Sources/music/correct.mp3 2> /dev/null") //toca um som
                     // sleep(1)
                 }
             }else{ //caso erre
                 qtdeErros -= 1 
                 if qtdeErros != 0 {
                     print("Tente novamente\nVocê pode errar \(qtdeErros) vezes") // mostra quantas vezes o usuário pode errar
-                    system("mpg123 Sources/music/wrong_5.mp3 2> out") //toca um som
+                    system("mpg123 Sources/music/wrong_5.mp3 2> /dev/null") //toca um som
                 }else{
                     return pontos
                 }
