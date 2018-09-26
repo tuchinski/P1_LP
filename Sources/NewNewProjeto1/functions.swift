@@ -18,51 +18,52 @@ func startGame() -> String{
 }
 
 func game(objPalavras:Treco) -> Int{
-    var pontos:Int = 0
-    var qtdeErros:Int = 5
+    var pontos:Int = 0 //pontos que o user fez
+    var qtdeErros:Int = 3 //qtde de vezes que pode errar
     
-    let qtdePalavras = objPalavras.palavras.count
-    let vetPalavras: [Palavra] = objPalavras.palavras
-    var palavraAtual:Int = 0
-    while(palavraAtual != qtdePalavras-1){
-        let letras = vetPalavras[palavraAtual].letras
-        var respostas = vetPalavras[palavraAtual].respostas
-        let numRespostas = vetPalavras[palavraAtual].respostas.count
-        var respostasAcertadas:[String] = []
+    let qtdePalavras = objPalavras.palavras.count //quantas palavras temos no total
+    let vetPalavras: [Palavra] = objPalavras.palavras //armazena as palavras num vetor de Palavras
+    var palavraAtual:Int = 0 //indice do vetor da palavra atual
+    while(palavraAtual != qtdePalavras-1){ //enquanto nao acabar as palavras
+        let letras = vetPalavras[palavraAtual].letras //armazena as letras num vetor
+        var respostas = vetPalavras[palavraAtual].respostas //armazena as respostas num vetor
+        let numRespostas = vetPalavras[palavraAtual].respostas.count //armazena a qtde de respostas certas
+        var respostasAcertadas:[String] = [] //armazena as respostas que o user acertou 
         
 
-        while (respostasAcertadas.count != numRespostas) && (qtdeErros != 0) {
+        while (respostasAcertadas.count != numRespostas) && (qtdeErros != 0) {  //enquanto tiver palavras para ser acertada e erros 
             system("clear")
             print("\n\tNivel \(palavraAtual + 1) ")
             print("\nPalavras Acertadas: \(respostasAcertadas)")
             print("\n\nEncontre palavras utilizando as seguintes letras: \(letras)")
-            let algumaCoisa = readLine()
-            let palavraDigitada = algumaCoisa?.lowercased()
+            let algumaCoisa = readLine() 
+            let palavraDigitada = algumaCoisa?.lowercased() //transforma o que o usuário digitou para minúsculo
             if(palavraDigitada == varExit){
                 exit(1)
             }
-            let indexPalavraDigitada = respostas.index(of:palavraDigitada!)
-            if indexPalavraDigitada != nil{
-                respostasAcertadas.append(respostas.remove(at:indexPalavraDigitada!))
-                if(respostas.count != 0){
-                    print("Acertou!! Faltam \(respostas.count) palavras")
-                    pontos += 1
-                    system("mpg123 Sources/music/correct.mp3 2> out")
-                    sleep(1)
+            let indexPalavraDigitada = respostas.index(of:palavraDigitada!) //busca a palavra digitada no vetor de respostas
+                                                                            //caso encontre, retorna o índice, senão retorna nil
+            if indexPalavraDigitada != nil{ //caso o usuário digite uma palavra correta
+                respostasAcertadas.append(respostas.remove(at:indexPalavraDigitada!)) //adiciona a palavra no vetor de respostas corretas
+                                                                                      //e retira do vetor de respostas
+                if(respostas.count != 0){ //caso ainda tenha respostas pra ser acertadas
+                    print("Acertou!! Faltam \(respostas.count) palavras") // mostra quantas respostas ainda restam
+                    pontos += 1 
+                    system("mpg123 Sources/music/correct.mp3 2> out") //toca um som
+                    // sleep(1)
                 }
-            }else{
-                qtdeErros -= 1
+            }else{ //caso erre
+                qtdeErros -= 1 
                 if qtdeErros != 0 {
-                    print("Tente novamente\nVocê pode errar \(qtdeErros) vezes")
-                    system("mpg123 Sources/music/wrong_5.mp3 2> out")                    
+                    print("Tente novamente\nVocê pode errar \(qtdeErros) vezes") // mostra quantas vezes o usuário pode errar
+                    system("mpg123 Sources/music/wrong_5.mp3 2> out") //toca um som
                 }else{
                     return pontos
                 }
                  sleep(1)
             }
         }
-        palavraAtual += 1
-        print(qtdeErros)
+        palavraAtual += 1 //quando termina, vai pra próxima palavra
         
         if(palavraAtual != qtdePalavras){
             print("VOCÊ DESCOBRIU TODAS AS PALAVRAS\nPRÓXIMO NÍVEL...")
@@ -73,28 +74,27 @@ func game(objPalavras:Treco) -> Int{
 }
 
 func getRequest(options:Int) -> Data? {
+    //configuração da session
     let sessionConfiguration = URLSessionConfiguration.default
     let session = URLSession(configuration: sessionConfiguration)
-    var meuDeus: Data?
+
+    var meuDeus: Data? //vai receber os dados do server
 
     var urls:[String] = []
     if(options == 1){
-        urls.append("http://localhost:8080/getJson")
+        urls.append("http://localhost:8080/getJson") //pega o JSON
     }else if(options == 2){
-        urls.append("http://localhost:8080/getHighScore")
+        urls.append("http://localhost:8080/getHighScore")//pega o highscore
     }
-    print(urls)
+    // print(urls)
 
-        // let urls = ["http://localhost:8080/2"]
-
+    //faz a requisição pro servidor
     let group = DispatchGroup()
         print("staring sync")
         urls.forEach { url in
             group.enter()
             session.dataTask(with: URL(string: url)!, completionHandler: {
                 (data, response, error) in
-                // let str = String(data: data!, encoding: .utf8)
-                // print("Task ran! \(str!)")
                 meuDeus = data
                 group.leave()
             }).resume()
@@ -107,6 +107,7 @@ func getRequest(options:Int) -> Data? {
 }  
 
 func postRequest(options:Int, stringDados: String) -> Data? {
+    //configuração da session
     let sessionConfiguration = URLSessionConfiguration.default
     let session = URLSession(configuration: sessionConfiguration)
     var meuDeus: Data?
@@ -114,7 +115,7 @@ func postRequest(options:Int, stringDados: String) -> Data? {
 
     var urls:[String] = []
     if(options == 1){
-        urls.append("http://localhost:8080/")
+        urls.append("http://localhost:8080/postHighScore")
     }else if(options == 2){
         urls.append("http://localhost:8080/")
     }
@@ -126,17 +127,16 @@ func postRequest(options:Int, stringDados: String) -> Data? {
     //     print("ERR")
     // }
 
-    
+    //cria uma request POST
     var request = URLRequest(url:URL(string: urls[0])!)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpBody = stringDados.data(using: .utf8)
 
     // print (request)
-    print(urls)
+    // print(urls)
 
-        // let urls = ["http://localhost:8080/2"]
-
+    //faz a requisição pro servidor
     let group = DispatchGroup()
         print("staring sync")
         urls.forEach { url in

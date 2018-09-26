@@ -10,14 +10,16 @@ let varExit: String = ":q"
 // """
 
 //le o JSON do arquivo local
-// var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
-var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
-let json = file!.readDataToEndOfFile()
+// // var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
+// var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
+// let json = file!.readDataToEndOfFile()
+// let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
 
-print (json)
+// print (json)
 
 //requisita o JSON para o servidor
-// let json = getRequest(options:1)
+let json = getRequest(options:1)
+let vetorPalavras = try JSONDecoder().decode(Treco.self,from:json!)
 // print (String(data: json!, encoding: .utf8)!)
 
 // let jsonObj = json.data(using: .utf8)!
@@ -25,49 +27,67 @@ print (json)
 
 
 
-let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
-
 let totalPalavras = vetorPalavras.palavras.count
 
 
 
-var pontosJogador: Int = 0
+var pontosJogador: Int = 0 //qtde de pontos do jogador
 
 let playerName = startGame() //retorna o nome do jogador
-var jogador: Player?
+var jogador: Player? //declara a variavel Player que será enviado para o BD
 //criação do menu
 var opcao:String?
 
 while opcao != varExit{
-    system("clear")
+    system("clear") //limpa a tela
     print ("\tLETROCA")
-                // if jogador != nil{
-                //         print (jogador!)
-                // }
-    printMain()
+    printMain()//imprime o menu na tela
     opcao = readLine()
     switch opcao {
         case "1":
-                pontosJogador = game(objPalavras:vetorPalavras)
-                jogador = Player(nome:playerName, pontuacao: pontosJogador)
-                let jsonPlayer = try JSONEncoder().encode(jogador!)
+                //QUANDO O JOGO COMEÇA
+
+                pontosJogador = game(objPalavras:vetorPalavras) //chama a função que inicia o jogo, quando ela termina retorna a pontuação do jogador
+                jogador = Player(nome:playerName, pontuacao: pontosJogador) //cria o Player que será enviado para o BD
+                let jsonPlayer = try JSONEncoder().encode(jogador!)//transforma esse player pra JSON
                 let jsonPlayerStr = String(data:jsonPlayer, encoding:.utf8)!
                 print (jsonPlayerStr)
-                postRequest(options:1, stringDados: jsonPlayerStr)
+                postRequest(options:1, stringDados: jsonPlayerStr)//envia Player para o servidor
                 // print(String(data:jsonPlayer, encoding:.utf8)!)
-                system("sleep 5")
-
+                system("sleep 1")
         
-        case "2":
+        case "2":                
                 print("HIGHSCORE!")
-                let dados = getRequest(options:2)
+                let dados = getRequest(options:2) // pega o highscore do servidor options = 1 -> pega as palavras; options = 2 -> pega o highscore 
                 system("clear")
-                let strHighScore = String(data:dados!, encoding: .utf8)!
-                var strHighScore2 = "[" + strHighScore + "]"
-                print(strHighScore2)
+                let strHighScore = String(data:dados!, encoding: .utf8)! //transforma os dados do tipo Data para String
+                
+                //prefixo do JSON
 
-                let jason = try JSONDecoder().decode([Player].self, from: strHighScore.data(using: .utf8)!)
-                // print (jason)
+                let prefixo = """
+                {"vetPlayer":[
+                """
+
+                //sufixo do JSON
+
+                let posfix = """
+                ]}
+                """
+
+                //junta os dados com prefixo e sufixo
+                var strHighScore2 = prefixo + strHighScore + posfix
+
+                //transforma os dados em um vetor de Player
+                let jason = try JSONDecoder().decode(PlayerJSON.self, from: strHighScore2.data(using: .utf8)!)
+                // print (jason.vetPlayer)
+                var vetor = jason.vetPlayer
+                print("\t\tHIGHSCORE")                
+                //printa cada Player
+                vetor.forEach{jogadorSalvo in
+                        print("-------------------------------------")
+                        print("Nome:\(jogadorSalvo.nome)\nPontuação:\(jogadorSalvo.pontuacaoTotal)")
+                }
+                print("-------------------------------------")
                 system("sleep 5")
 
         case varExit:

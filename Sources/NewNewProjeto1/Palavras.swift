@@ -24,3 +24,11 @@ struct Player: Codable {
         self.pontuacaoTotal = pontuacao
     }
 }
+
+struct PlayerJSON: Decodable {
+    let vetPlayer:[Player]
+
+    func ordena(){
+        
+    }
+}
