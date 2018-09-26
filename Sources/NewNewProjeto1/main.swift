@@ -54,7 +54,7 @@ while opcao != varExit{
                 print (jsonPlayerStr)
                 postRequest(options:1, stringDados: jsonPlayerStr)//envia Player para o servidor
                 // print(String(data:jsonPlayer, encoding:.utf8)!)
-                system("sleep 1")
+                sleep(1)
         
         case "2":                
                 print("HIGHSCORE!")
@@ -88,15 +88,18 @@ while opcao != varExit{
                         print("Nome:\(jogadorSalvo.nome)\nPontuação:\(jogadorSalvo.pontuacaoTotal)")
                 }
                 print("-------------------------------------")
-                system("sleep 5")
+
+                print("PRESSIONE QUALQUER TECLA PARA SAIR!")
+                let sair:String?
+                sair = readLine()
 
         case varExit:
                 // print("val:q")
                 exit(1)
 
         default:
-                print("opcao invalida")
-                system("sleep 2")
+                print("Opção inválida!!")
+                system("sleep 1")
         
     }
 }

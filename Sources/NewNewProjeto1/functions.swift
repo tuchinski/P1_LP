@@ -24,14 +24,14 @@ func game(objPalavras:Treco) -> Int{
     let qtdePalavras = objPalavras.palavras.count //quantas palavras temos no total
     let vetPalavras: [Palavra] = objPalavras.palavras //armazena as palavras num vetor de Palavras
     var palavraAtual:Int = 0 //indice do vetor da palavra atual
-    while(palavraAtual != qtdePalavras-1){ //enquanto nao acabar as palavras
+    while(palavraAtual != qtdePalavras){ //enquanto nao acabar as palavras
         let letras = vetPalavras[palavraAtual].letras //armazena as letras num vetor
         var respostas = vetPalavras[palavraAtual].respostas //armazena as respostas num vetor
         let numRespostas = vetPalavras[palavraAtual].respostas.count //armazena a qtde de respostas certas
         var respostasAcertadas:[String] = [] //armazena as respostas que o user acertou 
         
 
-        while (respostasAcertadas.count != numRespostas) && (qtdeErros != 0) {  //enquanto tiver palavras para ser acertada e erros 
+        while (respostasAcertadas.count < numRespostas) && (qtdeErros != 0) {  //enquanto tiver palavras para ser acertada e erros 
             system("clear")
             print("\n\tNivel \(palavraAtual + 1) ")
             print("\nPalavras Acertadas: \(respostasAcertadas)")
@@ -58,6 +58,8 @@ func game(objPalavras:Treco) -> Int{
                     print("Tente novamente\nVocê pode errar \(qtdeErros) vezes") // mostra quantas vezes o usuário pode errar
                     system("mpg123 Sources/music/wrong_5.mp3 2> /dev/null") //toca um som
                 }else{
+                    print("\t\tVOCÊ PERDEU!!")
+                    system("mpg123 Sources/music/sadtrombone.swf.mp3 2> /dev/null") //toca um som
                     return pontos
                 }
                  sleep(1)
@@ -67,8 +69,9 @@ func game(objPalavras:Treco) -> Int{
         
         if(palavraAtual != qtdePalavras){
             print("VOCÊ DESCOBRIU TODAS AS PALAVRAS\nPRÓXIMO NÍVEL...")
+            system("mpg123 Sources/music/final-fantasy-v-music-victory-fanfare_2.mp3 2> /dev/null")
         }
-        sleep(3)
+        // sleep(3)
     }
     return pontos
 }
