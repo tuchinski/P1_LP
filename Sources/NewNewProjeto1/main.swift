@@ -79,8 +79,8 @@ while opcao != varExit{
 
                 //transforma os dados em um vetor de Player
                 let jason = try JSONDecoder().decode(PlayerJSON.self, from: strHighScore2.data(using: .utf8)!)
-                // print (jason.vetPlayer)
                 var vetor = jason.vetPlayer
+                vetor.sort{$0.pontuacaoTotal > $1.pontuacaoTotal}
                 print("\t\tHIGHSCORE")                
                 //printa cada Player
                 vetor.forEach{jogadorSalvo in

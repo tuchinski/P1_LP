@@ -28,7 +28,30 @@ struct Player: Codable {
 struct PlayerJSON: Decodable {
     let vetPlayer:[Player]
 
-    func ordena(){
-        
-    }
+    // func ordena(){
+    //     var menor:Int = 0
+    //     var vet = self.vetPlayer
+
+    //     for i in 0...vet.count - 1{
+    //         // print (i)
+    //         for j in i...vet.count - 1{
+    //             menor = i
+    //             if(vet[j].pontuacaoTotal > vet[i].pontuacaoTotal){
+    //                 menor = j
+    //             }
+    //             print("i:\(i)")
+
+    //             print("jota:\(j)")
+    //             print ("menor:\(menor)")
+    //             sleep(1)
+    //         }
+    //         print("aeeeeeeeee\(vet[menor])")
+    //         sleep(1)
+    //         var aux = vet[i]
+    //         vet[i] = vet[menor]
+    //         vet[menor] = aux
+    //     }
+    //     print(vet)
+
+    // }
 }
