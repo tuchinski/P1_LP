@@ -4,6 +4,8 @@ var pontos:Int = 0
 var numPalavras:Int = 0
 // var palavraAtual:Int = 0 //indica o indice do vetor da palavra atual
 let varExit: String = ":q"
+let varReturn: String = ":v"
+
 
 // var json = """
 // {"palavras":[{"letras":["a","c","o","r","r"],"respostas":["caro","carro","aro","orar","cor","corra"]},{"letras":["a","s","o","r","t"],"respostas":["ator","rato","astro","rotas","tosar"]},{"letras":["r","c","r","o","a"],"respostas":["ar","coa","roa","corra","arco"]},{"letras":["m","a","r","o","a"],"respostas":["aro","mar","mora","amora","aroma"]},{"letras":["r","e","p","n","a"],"respostas":["rena","pena","pare","perna","penar"]}]}
@@ -11,16 +13,16 @@ let varExit: String = ":q"
 
 //le o JSON do arquivo local
 // // var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
-// var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
-// let json = file!.readDataToEndOfFile()
-// let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
+var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
+let json = file!.readDataToEndOfFile()
+let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
 
 // print (json)
 
 //requisita o JSON para o servidor
-let json = getRequest(options:1)
-let vetorPalavras = try JSONDecoder().decode(Treco.self,from:json!)
-// print (String(data: json!, encoding: .utf8)!)
+// let json = getRequest(options:1)
+// let vetorPalavras = try JSONDecoder().decode(Treco.self,from:json!)
+
 
 // let jsonObj = json.data(using: .utf8)!
 // let vetorPalavras = try JSONDecoder().decode(Treco.self,from:jsonObj)
@@ -40,7 +42,13 @@ var opcao:String?
 
 while opcao != varExit{
     system("clear") //limpa a tela
-    print ("\tLETROCA")
+    print("\n\t██╗     ███████╗████████╗██████╗  ██████╗  ██████╗ █████╗ ")
+        print("\t██║     ██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗██╔════╝██╔══██╗")
+        print("\t██║     █████╗     ██║   ██████╔╝██║   ██║██║     ███████║")
+        print("\t██║     ██╔══╝     ██║   ██╔══██╗██║   ██║██║     ██╔══██║")
+        print("\t███████╗███████╗   ██║   ██║  ██║╚██████╔╝╚██████╗██║  ██║")
+        print("\t╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝\n")
+
     printMain()//imprime o menu na tela
     opcao = readLine()
     switch opcao {
@@ -48,13 +56,15 @@ while opcao != varExit{
                 //QUANDO O JOGO COMEÇA
 
                 pontosJogador = game(objPalavras:vetorPalavras) //chama a função que inicia o jogo, quando ela termina retorna a pontuação do jogador
-                jogador = Player(nome:playerName, pontuacao: pontosJogador) //cria o Player que será enviado para o BD
-                let jsonPlayer = try JSONEncoder().encode(jogador!)//transforma esse player pra JSON
-                let jsonPlayerStr = String(data:jsonPlayer, encoding:.utf8)!
-                print (jsonPlayerStr)
-                postRequest(options:1, stringDados: jsonPlayerStr)//envia Player para o servidor
-                // print(String(data:jsonPlayer, encoding:.utf8)!)
-                sleep(1)
+                if pontosJogador != -1{
+                        jogador = Player(nome:playerName, pontuacao: pontosJogador) //cria o Player que será enviado para o BD
+                        let jsonPlayer = try JSONEncoder().encode(jogador!)//transforma esse player pra JSON
+                        let jsonPlayerStr = String(data:jsonPlayer, encoding:.utf8)!
+                        print (jsonPlayerStr)
+                        postRequest(options:1, stringDados: jsonPlayerStr)//envia Player para o servidor
+                        // print(String(data:jsonPlayer, encoding:.utf8)!)
+                        sleep(1)
+                }
         
         case "2":                
                 print("HIGHSCORE!")
@@ -96,6 +106,8 @@ while opcao != varExit{
         case varExit:
                 // print("val:q")
                 exit(1)
+        case varReturn:
+                break
 
         default:
                 print("Opção inválida!!")

@@ -1,21 +1,32 @@
 import Foundation
 
 func printMain(){
-    print("\n---------------------------")
-    print("\n1  - Começar novo jogo\n")
-    print("2  - Mostrar Highscore\n")
-    print(":q - Sair\n")
-    print("---------------------------\n")
-
+   print("\t--------------------------------------------------")
+    print("\t\t1  - Começar novo jogo\n")
+    print("\t\t2  - Mostrar Highscore\n")
+    print("\t\t:v  - Voltar para o menu principal\n")    
+    print("\t\t:q - Sair\n")
+   print("\t--------------------------------------------------")
+    
 }
 
 func startGame() -> String{
     system("clear")
-    print("\t\tBem vindo ao LETROCA\nDigite seu nome:")
+    print("\t\t\tBem vindo ao")
+    print("\n\t██╗     ███████╗████████╗██████╗  ██████╗  ██████╗ █████╗ ")
+        print("\t██║     ██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗██╔════╝██╔══██╗")
+        print("\t██║     █████╗     ██║   ██████╔╝██║   ██║██║     ███████║")
+        print("\t██║     ██╔══╝     ██║   ██╔══██╗██║   ██║██║     ██╔══██║")
+        print("\t███████╗███████╗   ██║   ██║  ██║╚██████╔╝╚██████╗██║  ██║")
+        print("\t╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝\n")
+
+    system("mpg123 Sources/music/open.mp3 2> /dev/null")
+    print("Digite seu nome:")
     let nome = readLine()
     print("\nSeja bem vindo: \(nome!)")
     return nome!
 }
+
 
 func game(objPalavras:Treco) -> Int{
     var pontos:Int = 0 //pontos que o user fez
@@ -40,6 +51,8 @@ func game(objPalavras:Treco) -> Int{
             let palavraDigitada = algumaCoisa?.lowercased() //transforma o que o usuário digitou para minúsculo
             if(palavraDigitada == varExit){
                 exit(1)
+            }else if(palavraDigitada == varReturn){
+                return -1
             }
             let indexPalavraDigitada = respostas.index(of:palavraDigitada!) //busca a palavra digitada no vetor de respostas
                                                                             //caso encontre, retorna o índice, senão retorna nil
