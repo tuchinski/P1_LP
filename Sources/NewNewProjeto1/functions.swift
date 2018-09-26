@@ -108,7 +108,7 @@ func getRequest(options:Int) -> Data? {
 
     //faz a requisição pro servidor
     let group = DispatchGroup()
-        print("staring sync")
+        // print("staring sync")
         urls.forEach { url in
             group.enter()
             session.dataTask(with: URL(string: url)!, completionHandler: {
@@ -118,9 +118,9 @@ func getRequest(options:Int) -> Data? {
             }).resume()
         }
 
-    print("ending sync")
+    // print("ending sync")
     group.wait()
-    print("FINAL")
+    // print("FINAL")
     return meuDeus
 }  
 
@@ -156,7 +156,7 @@ func postRequest(options:Int, stringDados: String) -> Data? {
 
     //faz a requisição pro servidor
     let group = DispatchGroup()
-        print("staring sync")
+        // print("staring sync")
         urls.forEach { url in
             group.enter()
             session.dataTask(with:request, completionHandler: {
@@ -168,8 +168,8 @@ func postRequest(options:Int, stringDados: String) -> Data? {
             }).resume()
         }
 
-    print("ending sync")
+    // print("ending sync")
     group.wait()
-    print("FINAL")
+    // print("FINAL")
     return meuDeus
 }  

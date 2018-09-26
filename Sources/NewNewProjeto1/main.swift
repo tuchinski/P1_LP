@@ -13,15 +13,15 @@ let varReturn: String = ":v"
 
 //le o JSON do arquivo local
 // // var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
-var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
-let json = file!.readDataToEndOfFile()
-let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
+//// var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
+//// let json = file!.readDataToEndOfFile()
+//// let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
 
 // print (json)
 
 //requisita o JSON para o servidor
-// let json = getRequest(options:1)
-// let vetorPalavras = try JSONDecoder().decode(Treco.self,from:json!)
+let json = getRequest(options:1)
+let vetorPalavras = try JSONDecoder().decode(Treco.self,from:json!)
 
 
 // let jsonObj = json.data(using: .utf8)!
@@ -60,7 +60,7 @@ while opcao != varExit{
                         jogador = Player(nome:playerName, pontuacao: pontosJogador) //cria o Player que será enviado para o BD
                         let jsonPlayer = try JSONEncoder().encode(jogador!)//transforma esse player pra JSON
                         let jsonPlayerStr = String(data:jsonPlayer, encoding:.utf8)!
-                        print (jsonPlayerStr)
+                        // print (jsonPlayerStr)
                         postRequest(options:1, stringDados: jsonPlayerStr)//envia Player para o servidor
                         // print(String(data:jsonPlayer, encoding:.utf8)!)
                         sleep(1)
