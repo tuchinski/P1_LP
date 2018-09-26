@@ -1,15 +1,7 @@
 {
   "object": {
     "pins": [
-      {
-        "package": "SwiftySound",
-        "repositoryURL": "https://github.com/adamcichy/SwiftySound.git",
-        "state": {
-          "branch": null,
-          "revision": "4a754f9b5dff91374fa96c27bade1b250f39e763",
-          "version": "0.7.0"
-        }
-      }
+
     ]
   },
   "version": 1

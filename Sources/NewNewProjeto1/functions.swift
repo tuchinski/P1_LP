@@ -76,9 +76,9 @@ func getRequest(options:Int) -> Data? {
 
     var urls:[String] = []
     if(options == 1){
-        urls.append("http://localhost:8080/1")
+        urls.append("http://localhost:8080/getJson")
     }else if(options == 2){
-        urls.append("http://localhost:8080/2")
+        urls.append("http://localhost:8080/getHighScore")
     }
     print(urls)
 
@@ -103,7 +103,7 @@ func getRequest(options:Int) -> Data? {
     return meuDeus
 }  
 
-func postRequest(options:Int) -> Data? {
+func postRequest(options:Int, stringDados: String) -> Data? {
     let sessionConfiguration = URLSessionConfiguration.default
     let session = URLSession(configuration: sessionConfiguration)
     var meuDeus: Data?
@@ -111,14 +111,24 @@ func postRequest(options:Int) -> Data? {
 
     var urls:[String] = []
     if(options == 1){
-        urls.append("http://localhost:8080/1dsadsa")
+        urls.append("http://localhost:8080/")
     }else if(options == 2){
-        urls.append("http://localhost:8080/2")
+        urls.append("http://localhost:8080/")
     }
+    // var jsonPlayer:Data?
+    // let jogador = Player(nome:"playerName", pontuacao: 8000)
+    // do {
+    //     jsonPlayer = try JSONEncoder().encode(jogador)
+    // } catch  {
+    //     print("ERR")
+    // }
+
     
     var request = URLRequest(url:URL(string: urls[0])!)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = stringDados.data(using: .utf8)
+
     // print (request)
     print(urls)
 

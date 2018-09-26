@@ -2,7 +2,7 @@ import Foundation
 
 var pontos:Int = 0
 var numPalavras:Int = 0
-var palavraAtual:Int = 0 //indica o indice do vetor da palavra atual
+// var palavraAtual:Int = 0 //indica o indice do vetor da palavra atual
 let varExit: String = ":q"
 
 // var json = """
@@ -11,16 +11,19 @@ let varExit: String = ":q"
 
 //le o JSON do arquivo local
 // var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
-var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
-let json = file!.readDataToEndOfFile()
+// var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
+// let json = file!.readDataToEndOfFile()
 
 //requisita o JSON para o servidor
-// let json = postRequest(options:1)
+let json = getRequest(options:1)
+// print (String(data: json!, encoding: .utf8)!)
 
 // let jsonObj = json.data(using: .utf8)!
 // let vetorPalavras = try JSONDecoder().decode(Treco.self,from:jsonObj)
 
-let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
+
+
+let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json!)
 
 let totalPalavras = vetorPalavras.palavras.count
 
@@ -46,13 +49,24 @@ while opcao != varExit{
                 pontosJogador = game(objPalavras:vetorPalavras)
                 jogador = Player(nome:playerName, pontuacao: pontosJogador)
                 let jsonPlayer = try JSONEncoder().encode(jogador!)
-                print(String(data:jsonPlayer, encoding:.utf8)!)
+                let jsonPlayerStr = String(data:jsonPlayer, encoding:.utf8)!
+                print (jsonPlayerStr)
+                postRequest(options:1, stringDados: jsonPlayerStr)
+                // print(String(data:jsonPlayer, encoding:.utf8)!)
                 system("sleep 5")
 
         
         case "2":
                 print("HIGHSCORE!")
-                system("sleep 1")
+                let dados = getRequest(options:2)
+                system("clear")
+                let strHighScore = String(data:dados!, encoding: .utf8)!
+                var strHighScore2 = "[" + strHighScore + "]"
+                print(strHighScore2)
+
+                let jason = try JSONDecoder().decode([Player].self, from: strHighScore.data(using: .utf8)!)
+                // print (jason)
+                system("sleep 5")
 
         case varExit:
                 print("val:q")
