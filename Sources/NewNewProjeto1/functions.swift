@@ -73,6 +73,7 @@ func game(objPalavras:Treco) -> Int{
         }
         // sleep(3)
     }
+    system("mpg123 Sources/music/hallelujahshort.swf.mp3 2> /dev/null") //toca um som
     return pontos
 }
 
