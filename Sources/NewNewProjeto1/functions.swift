@@ -46,6 +46,7 @@ func game(objPalavras:Treco) -> Int{
             system("clear")
             print("\n\tNivel \(palavraAtual + 1) ")
             print("\nPalavras Acertadas: \(respostasAcertadas)")
+            print("\nPontos: \(pontos)")
             print("\n\nEncontre palavras utilizando as seguintes letras: \(letras)")
             let algumaCoisa = readLine() 
             let palavraDigitada = algumaCoisa?.lowercased() //transforma o que o usuário digitou para minúsculo
