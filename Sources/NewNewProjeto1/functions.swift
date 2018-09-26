@@ -1,12 +1,12 @@
 import Foundation
 
 func printMain(){
-   print("\t--------------------------------------------------")
-    print("\t\t1  - Começar novo jogo\n")
-    print("\t\t2  - Mostrar Highscore\n")
-    print("\t\t:v  - Voltar para o menu principal\n")    
-    print("\t\t:q - Sair\n")
-   print("\t--------------------------------------------------")
+   print("\t----------------------------------------------------------")
+    print("\t\t\t1  - Começar novo jogo\n")
+    print("\t\t\t2  - Mostrar Highscore\n")
+    print("\t\t\t:v - Menu principal\n")    
+    print("\t\t\t:q - Sair\n")
+   print("\t----------------------------------------------------------")
     
 }
 
