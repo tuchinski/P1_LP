@@ -11,11 +11,13 @@ let varExit: String = ":q"
 
 //le o JSON do arquivo local
 // var file = FileHandle(forReadingAtPath: "/home/cogeti/Documentos/LP/NewNewProjeto1/Sources/NewNewProjeto1/palavrasteste.json")
-// var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
-// let json = file!.readDataToEndOfFile()
+var file = FileHandle(forReadingAtPath: "/home/tuchinski/Documentos/UTFPR/LP/project1/P1_LP/Sources/NewNewProjeto1/palavrasteste.json")
+let json = file!.readDataToEndOfFile()
+
+print (json)
 
 //requisita o JSON para o servidor
-let json = getRequest(options:1)
+// let json = getRequest(options:1)
 // print (String(data: json!, encoding: .utf8)!)
 
 // let jsonObj = json.data(using: .utf8)!
@@ -23,7 +25,7 @@ let json = getRequest(options:1)
 
 
 
-let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json!)
+let vetorPalavras = try JSONDecoder().decode(Treco.self, from:json)
 
 let totalPalavras = vetorPalavras.palavras.count
 
@@ -38,10 +40,10 @@ var opcao:String?
 
 while opcao != varExit{
     system("clear")
-    print ("LETROCA")
-                if jogador != nil{
-                        print (jogador!)
-                }
+    print ("\tLETROCA")
+                // if jogador != nil{
+                //         print (jogador!)
+                // }
     printMain()
     opcao = readLine()
     switch opcao {
@@ -69,11 +71,12 @@ while opcao != varExit{
                 system("sleep 5")
 
         case varExit:
-                print("val:q")
+                // print("val:q")
                 exit(1)
 
         default:
                 print("opcao invalida")
+                system("sleep 2")
         
     }
 }

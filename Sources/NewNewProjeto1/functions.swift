@@ -1,14 +1,17 @@
 import Foundation
 
 func printMain(){
+    print("\n---------------------------")
     print("\n1  - Começar novo jogo\n")
     print("2  - Mostrar Highscore\n")
     print(":q - Sair\n")
+    print("---------------------------\n")
+
 }
 
 func startGame() -> String{
     system("clear")
-    print("Bem vindo ao LETROCA\nDigite seu nome:")
+    print("\t\tBem vindo ao LETROCA\nDigite seu nome:")
     let nome = readLine()
     print("\nSeja bem vindo: \(nome!)")
     return nome!
@@ -21,7 +24,7 @@ func game(objPalavras:Treco) -> Int{
     let qtdePalavras = objPalavras.palavras.count
     let vetPalavras: [Palavra] = objPalavras.palavras
     var palavraAtual:Int = 0
-    while(palavraAtual != qtdePalavras){
+    while(palavraAtual != qtdePalavras-1){
         let letras = vetPalavras[palavraAtual].letras
         var respostas = vetPalavras[palavraAtual].respostas
         let numRespostas = vetPalavras[palavraAtual].respostas.count
@@ -44,18 +47,18 @@ func game(objPalavras:Treco) -> Int{
                 if(respostas.count != 0){
                     print("Acertou!! Faltam \(respostas.count) palavras")
                     pontos += 1
-                    // system("mpg123 Sources/music/correct.mp3")
-                    // system("pwd")
+                    system("mpg123 Sources/music/correct.mp3 2> out")
                     sleep(1)
                 }
             }else{
                 qtdeErros -= 1
                 if qtdeErros != 0 {
                     print("Tente novamente\nVocê pode errar \(qtdeErros) vezes")
+                    system("mpg123 Sources/music/wrong_5.mp3 2> out")                    
                 }else{
                     return pontos
                 }
-                sleep(1)
+                 sleep(1)
             }
         }
         palavraAtual += 1
